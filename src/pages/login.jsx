@@ -34,7 +34,7 @@ const LoginPage = () => {
                   style={styles.link}
                   onClick={(e) => {
                     e.preventDefault();
-                    toggleSignUp(); 
+                    toggleSignUp(); // สลับไปที่การสมัครสมาชิก
                   }}
                 >
                   Join Redfin
@@ -106,6 +106,7 @@ const LoginPage = () => {
             <>
               <h1 style={styles.title}>Join Redfin</h1>
 
+              {/* ข้อความสำหรับผู้ที่มีบัญชีแล้ว */}
               <p style={styles.subtitle}>
                 Have an account?{' '}
                 <a
@@ -113,14 +114,14 @@ const LoginPage = () => {
                   style={styles.link}
                   onClick={(e) => {
                     e.preventDefault();
-                    toggleSignUp(); 
+                    toggleSignUp(); // สลับกลับไปที่การเข้าสู่ระบบ
                   }}
                 >
                   Sign in
                 </a>
               </p>
 
-
+              {/* ปุ่มโซเชียล */}
               <div style={styles.socialButtons}>
                 <button style={styles.socialButton}>
                   <img src={googleIcon} alt="Google" style={styles.icon} />
@@ -136,7 +137,7 @@ const LoginPage = () => {
                 </button>
               </div>
 
-
+              {/* ฟอร์มกรอกข้อมูล */}
               <form style={styles.form}>
                 <div style={styles.formGroup}>
                   <label htmlFor="fullName" style={styles.label}>Full Name:</label>

@@ -5,6 +5,7 @@ import Modal from '../Modal/Modal';
 import Sidebar from '../Sidebar/sidebar.jsx';
 import { useGlobalEvent } from '../../context/GlobalEventContext';
 import { Link } from 'react-router-dom';
+
 const Navbar = () => {
   const { windowSize } = useGlobalEvent();
   const [isModalOpen, setIsModalOpen] = useState(false);
