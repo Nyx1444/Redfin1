@@ -46,14 +46,6 @@ const LoginPage = () => {
                   <img src={googleIcon} alt="Google" style={styles.icon} />
                   Continue with Google
                 </button>
-                <button style={styles.socialButton}>
-                  <img src={facebookIcon} alt="Facebook" style={styles.icon} />
-                  Continue with Facebook
-                </button>
-                <button style={styles.socialButton}>
-                  <img src={appleIcon} alt="Apple" style={styles.icon} />
-                  Continue with Apple
-                </button>
               </div>
 
               <form style={styles.form}>
@@ -126,14 +118,6 @@ const LoginPage = () => {
                 <button style={styles.socialButton}>
                   <img src={googleIcon} alt="Google" style={styles.icon} />
                   Continue with Google
-                </button>
-                <button style={styles.socialButton}>
-                  <img src={facebookIcon} alt="Facebook" style={styles.icon} />
-                  Continue with Facebook
-                </button>
-                <button style={styles.socialButton}>
-                  <img src={appleIcon} alt="Apple" style={styles.icon} />
-                  Continue with Apple
                 </button>
               </div>
 

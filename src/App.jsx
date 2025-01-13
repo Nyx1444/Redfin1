@@ -2,9 +2,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
-import HousesForSale from './pages/houses-for-sale';
+import Buy from './pages/buy';
 import Agent from './pages/agent';
 import LoginPage from './pages/login';
+import Housesforsale from './pages/Houseforsale';
+import SetPasswordPage from './pages/setPassword';
 import "./App.css";
 
 const App = () => {
@@ -12,9 +14,11 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/houses-for-sale" element={<HousesForSale />} />
+        <Route path="/buy" element={<Buy />} />
         <Route path="/Agent" element={<Agent />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/houses-for-sale" element={<Housesforsale />} />
+        <Route path='/set-password' element={<SetPasswordPage />} />
       </Routes>
     </Router>
   );

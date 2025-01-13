@@ -1,0 +1,59 @@
+/* .container {
+  padding: 20px;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.filters .dropdown,
+.filters .filters-icon {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px 15px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.filters .save-search {
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.view-options {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.view-options button {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px 15px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.view-options button.active {
+  background-color: #00796b;
+  color: white;
+}
+
+
+@media (max-width: 768px) {
+  .filters {
+    justify-content: flex-start; 
+  }
+
+  .view-options {
+    justify-content: center; 
+  }
+} */

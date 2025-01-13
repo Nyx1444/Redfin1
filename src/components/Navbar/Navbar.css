@@ -8,14 +8,19 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 30px;
-  background-color: #C82021;
-  color: #ffffff;
   font-family: "Libre Franklin", -apple-system, BlinkMacSystemFont, Roboto, "Droid Sans", Helvetica, Arial, sans-serif;
   font-size: 14px;
   white-space: nowrap;
   z-index: 10;
   overflow: visible;
+  background-color: black;
+  width: 100%;
 }
+
+.navbar--home {
+  background-color: transparent;
+}
+
 
 .navbar__logo {
   overflow: hidden;
@@ -26,6 +31,12 @@
 .navbar__logo .logo {
   max-width: 130px;
   height: auto;
+}
+
+.navbar__menu-actions.navbar--home .navbar__nav a,
+.navbar__menu-actions.navbar--home .join-signin {
+  color: #333;
+  border-color: #333; 
 }
 
 .navbar__menu-actions {
@@ -54,6 +65,7 @@
   position: relative;
 }
 
+
 .navbar__actions .join-signin {
   padding: 8px 15px;
   border: 0.8px solid #ffffff;
@@ -66,6 +78,7 @@
   font-size: 14px;
   font-family: "Libre Franklin", -apple-system, BlinkMacSystemFont, Roboto, "Droid Sans", Helvetica, Arial, sans-serif;
 }
+
 
 .navbar__actions .join-signin:hover {
   background-color: rgba(255, 255, 255, 0.1);
