@@ -7,11 +7,23 @@ import Sidebar from '../Sidebar/sidebar.jsx';
 import { useGlobalEvent } from '../../context/GlobalEventContext';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const { windowSize } = useGlobalEvent();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState({
+    name: 'Nyx',
+    profileImage: 'https://ui-avatars.com/api/?name=John+Doe&background=random',
+  }); // อันนี้จำลอง
+
+  const navigate = useNavigate();
+  const handleSignOut = () => {
+    localStorage.removeItem('user');
+    navigate('/login'); 
+  };
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -27,16 +39,17 @@ const Navbar = () => {
 
   const { pathname } = useLocation();
   const isHomePage = pathname === '/';
+  const isLoginOrSetPasswordPage = pathname === '/login' || pathname === '/set-password';
 
   return (
     <header className={`navbar ${isHomePage ? 'navbar--home' : ''}`}>
       <div className="navbar__logo">
         <Link to="/">
-        <img
-          src={isHomePage ? logohome : logo} 
-          alt="Logo"
-          className="logo"
-        />
+          <img
+            src={isHomePage ? logohome : logo}
+            alt="Logo"
+            className="logo"
+          />
         </Link>
       </div>
 
@@ -149,9 +162,42 @@ const Navbar = () => {
               </ul>
             </nav>
             <div className="navbar__actions">
-              <button onClick={openModal} className="join-signin">
-                Join / Sign in
-              </button>
+              {!isLoginOrSetPasswordPage && (
+                isLoggedIn ? (
+                  <div className="user-dropdown">
+                    <span className="user-name">{user.name}</span>
+                    <img
+                      src={user.profileImage}
+                      alt={user.name}
+                      className="user-avatar"
+                    />
+                    <div className="dropdown-content">
+                    <div className="dropdown-column">
+                      <h4>My redfin</h4>
+                      <a href="#">Favorites</a>
+                      <a href="#">Saved searches</a>
+                      <a href="#">Open house schedule</a>
+                      <a href="#">Appointments</a>
+                      <a href="#">Owner</a>
+                      <a href="#">Dashboard</a>
+                      <a href="#">Agent</a>
+                      <a href="#">Offers</a>
+                      <a href="#">Reviews</a>
+                    </div>
+                      <div className="dropdown-column">
+                        <h4>Settings</h4>
+                        <a href="#">Notification settings</a>
+                        <a href="#">Account settings</a>
+                        <a href="#" onClick={handleSignOut}>Sign out</a>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <button onClick={openModal} className="join-signin">
+                    Join / Sign in
+                  </button>
+                )
+              )}
             </div>
           </div>
         </div>

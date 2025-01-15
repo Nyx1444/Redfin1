@@ -96,7 +96,7 @@
   left: -140px;
   background-color: #ffffff;
   color: #333;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.7);
   z-index: 1;
   border-radius: 4px;
   grid-template-columns: auto auto auto;
@@ -142,7 +142,7 @@
   transition: background-color 0.3s ease;
   white-space: nowrap;
   font-size: 14px;
-  font-weight: lighter;
+  font-weight: 400;
   color: #333;
 }
 
@@ -172,6 +172,65 @@
 .hamburger-menu:hover .SvgIcon {
   transform: scale(1.2);
 }
+
+/* User Styles */
+.user-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  z-index: 10; /* เพิ่มค่า z-index */
+}
+
+.user-dropdown .user-avatar {
+  width: 25px; 
+  height: 25px; 
+  border-radius: 50%;
+  object-fit: cover; 
+}
+
+.user-dropdown .user-name {
+  color: #333;
+  font-weight: 500;
+  font-size: 14px;
+  position: relative;
+}
+
+.user-dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 0;
+  background-color: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  min-width: 150px;
+  z-index: 20; /* เพิ่มค่า z-index */
+}
+
+.user-dropdown .dropdown-content::before {
+  display: none; 
+}
+
+.user-dropdown:hover .dropdown-content {
+  display: block; 
+}
+
+.user-dropdown .dropdown-content a {
+  display: block;
+  color: #333;
+  text-decoration: none;
+  padding: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.user-dropdown .dropdown-content a:hover {
+  background-color: #f1f1f1;
+  color: #C82021;
+}
+
 
 /* -------------------
    Mobile Styles
