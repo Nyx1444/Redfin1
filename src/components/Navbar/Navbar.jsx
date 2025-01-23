@@ -16,13 +16,13 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState({
     name: 'Nyx',
-    profileImage: 'https://ui-avatars.com/api/?name=John+Doe&background=random',
+    profileImage: 'https://images.hdqwalls.com/download/sunset-at-st-mary-lake-glacier-national-park-5k-l3-1600x900.jpg',
   }); // อันนี้จำลอง
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // ใช้ useNavigate แทน useHistory
   const handleSignOut = () => {
     localStorage.removeItem('user');
-    navigate('/login'); 
+    navigate('/login'); // ใช้ navigate แทน history.push
   };
 
   const openModal = () => {
@@ -165,29 +165,30 @@ const Navbar = () => {
               {!isLoginOrSetPasswordPage && (
                 isLoggedIn ? (
                   <div className="user-dropdown">
-                    <span className="user-name">{user.name}</span>
+                    <span className={`user-name ${isHomePage ? 'user-name--home' : ''}`}>
+                      {user.name}
+                    </span>
                     <img
                       src={user.profileImage}
                       alt={user.name}
                       className="user-avatar"
                     />
                     <div className="dropdown-content">
-                    <div className="dropdown-column">
-                      <h4>My redfin</h4>
-                      <a href="#">Favorites</a>
-                      <a href="#">Saved searches</a>
-                      <a href="#">Open house schedule</a>
-                      <a href="#">Appointments</a>
-                      <a href="#">Owner</a>
-                      <a href="#">Dashboard</a>
-                      <a href="#">Agent</a>
-                      <a href="#">Offers</a>
-                      <a href="#">Reviews</a>
-                    </div>
+                      <div className="dropdown-column">
+                        <h4>My redfin</h4>
+                        <a href="/favorites">Favorites</a>
+                        <a href="/saved-searches">Saved searches</a>
+                        <a href="/open-house-schedule">Open house schedule</a>
+                        <a href="/appointments">Appointments</a>
+                        <a href="/owner-dashboard">Owner Dashboard</a>
+                        <a href="/your-agent">Agent</a>
+                        <a href="/offers">Offers</a>
+                        <a href="/reviews">Reviews</a>
+                      </div>
                       <div className="dropdown-column">
                         <h4>Settings</h4>
-                        <a href="#">Notification settings</a>
-                        <a href="#">Account settings</a>
+                        <Link to="/notification-settings">Notification settings</Link>
+                        <Link to="/account-settings">Account settings</Link>
                         <a href="#" onClick={handleSignOut}>Sign out</a>
                       </div>
                     </div>

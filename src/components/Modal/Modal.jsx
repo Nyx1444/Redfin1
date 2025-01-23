@@ -25,14 +25,14 @@ const Modal = ({ isOpen, onClose }) => {
           <img src={googleIcon} alt="Google" className="social-logo" />
           Continue with Google
         </button>
-        <button className="social-button facebook">
+        {/* <button className="social-button facebook">
           <img src={facebookIcon} alt="Facebook" className="social-logo" />
           Continue with Facebook
         </button>
         <button className="social-button apple">
           <img src={appleIcon} alt="Apple" className="social-logo" />
           Continue with Apple
-        </button>
+        </button> */}
 
         {/* ลิงก์ยินยอม */}
         <p>By signing in you agree to Redfin's <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.</p>

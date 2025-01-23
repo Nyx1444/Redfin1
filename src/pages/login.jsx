@@ -2,28 +2,26 @@ import React, { useState } from 'react';
 import Navbar from '../components/Navbar/Navbar';
 
 import googleIcon from '../img/google-icon.png';
-import facebookIcon from '../img/facebook-icon.png';
-import appleIcon from '../img/apple-icon.png';
 
 import { useGlobalEvent } from '../context/GlobalEventContext';
 
 const LoginPage = () => {
   const { windowSize } = useGlobalEvent();
-
-  const [isSignUp, setIsSignUp] = useState(false);
-
-  const toggleSignUp = () => {
-    setIsSignUp(!isSignUp);
-  };
+  const [activeCard, setActiveCard] = useState('signIn'); // สามารถเป็น 'signIn', 'signUp', หรือ 'forgotPassword'
 
   const isMobileView = windowSize.width < 980;
+
+  const handleSwitchCard = (card) => {
+    setActiveCard(card); // เปลี่ยนการ์ดที่ต้องการแสดง
+  };
 
   return (
     <div style={styles.global}>
       <Navbar />
       <div style={styles.PageBody}>
         <div style={{ ...styles.LoginCard, padding: isMobileView ? '24px 32px' : '32px 64px' }}>
-          {!isSignUp ? (
+          {activeCard === 'signIn' && (
+
             // การ์ด Sign in
             <>
               <h1 style={styles.title}>Sign in</h1>
@@ -34,7 +32,7 @@ const LoginPage = () => {
                   style={styles.link}
                   onClick={(e) => {
                     e.preventDefault();
-                    toggleSignUp(); // สลับไปที่การสมัครสมาชิก
+                    handleSwitchCard('signUp'); // สลับไปที่การสมัครสมาชิก
                   }}
                 >
                   Join Redfin
@@ -61,7 +59,14 @@ const LoginPage = () => {
                     required
                   />
                 </div>
-                <a href="/forgot-password" style={styles.forgotLink}>
+                <a
+                  href="#"
+                  style={styles.forgotLink}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleSwitchCard('forgotPassword'); // สลับไปที่การ์ด Forgot Password
+                  }}
+                >
                   Forgot?
                 </a>
                 <div style={styles.formGroup}>
@@ -93,9 +98,11 @@ const LoginPage = () => {
                 .
               </p>
             </>
-          ) : (
-            // การ์ด Sign up
+          )}
+
+          {activeCard === 'signUp' && (
             <>
+              {/* การ์ดสมัคร */}
               <h1 style={styles.title}>Join Redfin</h1>
 
               {/* ข้อความสำหรับผู้ที่มีบัญชีแล้ว */}
@@ -106,7 +113,7 @@ const LoginPage = () => {
                   style={styles.link}
                   onClick={(e) => {
                     e.preventDefault();
-                    toggleSignUp(); // สลับกลับไปที่การเข้าสู่ระบบ
+                    handleSwitchCard('signIn'); // สลับกลับไปที่การเข้าสู่ระบบ
                   }}
                 >
                   Sign in
@@ -169,6 +176,77 @@ const LoginPage = () => {
               </p>
             </>
           )}
+
+          {activeCard === 'forgotPassword' && (
+            // การ์ดลืมรหัสผ่าน
+            <>
+              <h1 style={styles.title}>Forgot Password</h1>
+              <p style={styles.subtitle}>
+                Need an account?{' '}
+                <a
+                  href="#"
+                  style={styles.link}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleSwitchCard('signIn'); 
+                  }}
+                >
+                  Join Redfin
+                </a>
+              </p>
+              
+              {/* ปุ่มโซเชียล */}
+              <div style={styles.socialButtons}>
+                <button style={styles.socialButton}>
+                  <img src={googleIcon} alt="Google" style={styles.icon} />
+                  Continue with Google
+                </button>
+              </div>
+
+              <form style={styles.form}>
+                <div style={styles.formGroup}>
+                  <label htmlFor="email" style={styles.label}>
+                    Email Address:
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    style={styles.input}
+                    required
+                  />
+                </div>
+                <p style={styles.subtitleforgot}>
+                {' '}
+                <a
+                  href="#"
+                  style={styles.link}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleSwitchCard('signIn'); 
+                  }}
+                >
+                  Have a password?
+                </a>
+              </p>
+                <button type="submit" style={styles.submitButton}>
+                  Reset Password
+                </button>
+              </form>
+
+              <p style={styles.terms}>
+                By signing up you agree to Redfin's{' '}
+                <a href="/terms" style={styles.link}>
+                  Terms
+                </a>{' '}
+                and{' '}
+                <a href="/privacy" style={styles.link}>
+                  Privacy
+                </a>
+                .
+              </p>
+            </>
+          )}
         </div>
       </div>
     </div>
@@ -210,6 +288,11 @@ const styles = {
   subtitle: {
     fontSize: '16px',
     marginBottom: '20px',
+    textAlign: 'left',
+  },
+  subtitleforgot: {
+    fontSize: '14px',
+    marginBottom: '10px',
     textAlign: 'left',
   },
   link: {
@@ -281,9 +364,10 @@ const styles = {
     fontFamily: '"Libre Franklin", -apple-system, BlinkMacSystemFont, Roboto, "Droid Sans", Helvetica, Arial, sans-serif',
   },
   terms: {
-    fontSize: '14px',
+    fontSize: '12px',
     color: '#333333',
     marginTop: '20px',
+    textAlign: 'left',
   },
 };
 
