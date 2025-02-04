@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import "./Modal.css";
 import googleIcon from "../../img/google-icon.png";
-import { useGlobalEvent } from "../context/GlobalEventContext";
-
-import axios from "axios";
-import { GoogleLogin } from "@react-oauth/google";
 
 const Modal = ({ isOpen, onClose }) => {
   const [stepHistory, setStepHistory] = useState([1]); // เก็บประวัติของการ์ด
