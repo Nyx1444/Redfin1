@@ -7,6 +7,8 @@ import Agent from './pages/agent';
 import LoginPage from './pages/login';
 import Housesforsale from './pages/Houseforsale';
 import SetPasswordPage from './pages/setPassword';
+import ChagePasswordPage from './pages/chagePassword';
+import ResetPasswordPage from "./pages/ResetPassword.jsx";
 import Test from './pages/test';
 import "./App.css";
 
@@ -21,6 +23,7 @@ import Reviews from './pages/reviews';
 import OwnerDashboard from './pages/ownerDashboard';
 import NotificationSettings from './pages/notificationSettings';
 import AccountSettings from './pages/accountSettings';
+import VerifyID from './pages/verifyId';
 
 const App = () => {
   return (
@@ -32,6 +35,8 @@ const App = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/houses-for-sale" element={<Housesforsale />} />
         <Route path='/set-password' element={<SetPasswordPage />} />
+        <Route path="/chage-password" element={<ChagePasswordPage/>} />
+        <Route path="/resetpassword/:token" element={<ResetPasswordPage />} />
         <Route path='/test' element={<Test />} />
 
         <Route path="/favorites" element={<Favorites/>} />
@@ -44,6 +49,8 @@ const App = () => {
         <Route path="/owner-dashboard" element={<OwnerDashboard/>} /> 
         <Route path="/notification-settings" element={<NotificationSettings/>} />
         <Route path="/account-settings" element={<AccountSettings/>} />
+
+        <Route path='/verify' element={<VerifyID />} />
       </Routes>
     </Router>
   );
