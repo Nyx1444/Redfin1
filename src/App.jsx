@@ -1,9 +1,9 @@
 // src/App.jsx
 import React from 'react';
+import { useParams } from "react-router-dom";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import Buy from './pages/buy';
-import Agent from './pages/agent';
 import LoginPage from './pages/login';
 import Housesforsale from './pages/Houseforsale';
 import SetPasswordPage from './pages/setPassword';
@@ -11,7 +11,6 @@ import ChagePasswordPage from './pages/chagePassword';
 import ResetPasswordPage from "./pages/ResetPassword.jsx";
 import Test from './pages/test';
 import "./App.css";
-
 
 import Favorites from './pages/favorites';
 import SavedSearches from './pages/savedSearches';
@@ -25,18 +24,19 @@ import NotificationSettings from './pages/notificationSettings';
 import AccountSettings from './pages/accountSettings';
 import VerifyID from './pages/verifyId';
 
+import PropertyHeader from './components/PropertyHeader/PropertyHeader.jsx';
+import PropertyDetails from './pages/PropertyDetails.jsx';
 const App = () => {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/buy" element={<Buy />} />
-        <Route path="/Agent" element={<Agent />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/houses-for-sale" element={<Housesforsale />} />
         <Route path='/set-password' element={<SetPasswordPage />} />
         <Route path="/chage-password" element={<ChagePasswordPage/>} />
-        <Route path="/resetpassword/:token" element={<ResetPasswordPage />} />
+        <Route path="/resetpassword" element={<ResetPasswordPage />} />
         <Route path='/test' element={<Test />} />
 
         <Route path="/favorites" element={<Favorites/>} />
@@ -51,6 +51,8 @@ const App = () => {
         <Route path="/account-settings" element={<AccountSettings/>} />
 
         <Route path='/verify' element={<VerifyID />} />
+        <Route path="/search" element={<PropertyHeader />} />
+        <Route path="/property/:id" element={<PropertyDetails />} />
       </Routes>
     </Router>
   );

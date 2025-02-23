@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import "./Modal.css";
 import googleIcon from "../../img/google-icon.png";
 
+
 const Modal = ({ isOpen, onClose }) => {
   const [stepHistory, setStepHistory] = useState([1]); // เก็บประวัติของการ์ด
   const [email, setEmail] = useState(""); // เก็บ email ที่ผู้ใช้กรอก
-  const [userHasPassword, setUserHasPassword] = useState(true); // เพิ่ม state สำหรับ userHasPassword
+  const [userHasPassword, setUserHasPassword] = useState(false); // เพิ่ม state สำหรับ userHasPassword
 
   if (!isOpen) return null;
 

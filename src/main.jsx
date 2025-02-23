@@ -1,12 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import Navbar from './components/Navbar/Navbar';
 import GlobalEventProvider from './context/GlobalEventContext';
 import App from './App';
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root')); 
+root.render(
   <GlobalEventProvider>
-    <App></App>
-  </GlobalEventProvider>,
-  document.getElementById('root')
+    <App />
+  </GlobalEventProvider>
 );

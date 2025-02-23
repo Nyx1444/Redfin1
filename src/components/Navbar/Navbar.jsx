@@ -15,7 +15,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState({
-    name: 'Nyx',
+    name: 'kantapong',
     profileImage: 'https://images.hdqwalls.com/download/sunset-at-st-mary-lake-glacier-national-park-5k-l3-1600x900.jpg',
   }); // อันนี้จำลอง
 
@@ -39,10 +39,27 @@ const Navbar = () => {
 
   const { pathname } = useLocation();
   const isHomePage = pathname === '/';
-  const isLoginOrSetPasswordPage = pathname === '/login' || pathname === '/set-password';
+  const isLoginOrSetPasswordPage = pathname === '/login' || pathname === '/set-password'||pathname === "/chage-password"||pathname==="/set-password"||pathname==='/resetpassword';
+  const hideSearchBox = pathname === "/" || pathname === "/login"||pathname === "/chage-password"||pathname==="/set-password"||pathname==='/resetpassword';
+
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (event) => {
+    if (event.key === "Enter" && searchQuery.trim() !== "") {
+      navigate(`/search?query=${encodeURIComponent(searchQuery)}`);
+    }
+  };
+  
+  const handleSearchClick = () => {
+    if (searchQuery.trim() !== "") {
+      navigate(`/search?query=${encodeURIComponent(searchQuery)}`);
+    }
+  };
 
   return (
     <header className={`navbar ${isHomePage ? 'navbar--home' : ''}`}>
+
+      {/* โลโก้ */}
       <div className="navbar__logo">
         <Link to="/">
           <img
@@ -53,8 +70,51 @@ const Navbar = () => {
         </Link>
       </div>
 
-      {windowSize.width >= 980 ? (
-        // เงื่อนไขสำหรับหน้าจอกว้างกว่า 980px
+      {/* ค้นหา */}
+      {!hideSearchBox && (
+        <div className="navbar__search-wrapper">
+          {windowSize.width >= 1280 ? (
+            // ค้นหาแบบ desktop
+            <div className="navbar__search-container desktop">
+              <input
+                type="text"
+                placeholder="City, Address, School, Agent, ZIP"
+                className="navbar__search-input desktop"
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={handleSearch}
+              />
+              <button className="search-button-desktop" onClick={handleSearchClick}>
+                <svg className="search-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M23.884 21.763l-7.554-7.554a8.976 8.976 0 001.526-6.835C17.203 3.68 14.204.72 10.502.122a9.01 9.01 0 00-10.38 10.38c.598 3.702 3.558 6.7 7.252 7.354a8.976 8.976 0 006.835-1.526l7.554 7.554a.25.25 0 00.353 0l1.768-1.768a.25.25 0 000-.353zM2 9c0-3.86 3.14-7 7-7s7 3.14 7 7-3.14 7-7 7-7-3.14-7-7z" 
+                  fill="#ffffff" />
+                </svg>
+              </button>
+            </div>
+
+          ) : (
+            // ค้นหาแบบ Mobile 
+            < div className="navbar__search-container mobile">
+              <input
+                type="text"
+                placeholder="City, Address, School, Agent, ZIP"
+                className="navbar__search-input mobile"
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={handleSearch}
+              />
+              <button className="search-button-mobile" onClick={handleSearchClick}>
+                <svg className="search-icon" viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M23.884 21.763l-7.554-7.554a8.976 8.976 0 001.526-6.835C17.203 3.68 14.204.72 10.502.122a9.01 9.01 0 00-10.38 10.38c.598 3.702 3.558 6.7 7.252 7.354a8.976 8.976 0 006.835-1.526l7.554 7.554a.25.25 0 00.353 0l1.768-1.768a.25.25 0 000-.353zM2 9c0-3.86 3.14-7 7-7s7 3.14 7 7-3.14 7-7 7-7-3.14-7-7z" 
+                  fill="#585858" />
+                </svg>
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* แถบเมนู */}
+      {windowSize.width >= 1280 ? (
+        // แถบเมนูแบบ desktop
         <div className={`navbar__menu-actions ${isHomePage ? 'navbar--home' : ''}`}>
           <div className="navbar__menu-actions">
             <nav className="navbar__nav">
@@ -166,9 +226,11 @@ const Navbar = () => {
                 isLoggedIn ? (
                   <div className="user-dropdown">
                     <span className={`user-name ${isHomePage ? 'user-name--home' : ''}`}>
+                      {/* ส่วนชื่อผู้ใช้ */}
                       {user.name}
                     </span>
                     <img
+                      // ส่วนรูปภาพผู้ใช้
                       src={user.profileImage}
                       alt={user.name}
                       className="user-avatar"
@@ -203,25 +265,33 @@ const Navbar = () => {
           </div>
         </div>
       ) : (
-        // เงื่อนไขสำหรับหน้าจอแคบกว่า 980px
+        // แถบเมนูแบบ Mobile
         <>
           <div className="navbar__menu-actions">
-            <span className="sign-in" onClick={openModal}>
-              Sign in
-            </span>
-            <button className="hamburger-menu" onClick={toggleMenu}>
-              <svg className="SvgIcon menu hamNavIcon" viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M20.75 8H3.25A.25.25 0 013 7.75v-1.5A.25.25 0 013.25 6h17.5a.25.25 0 01.25.25v1.5a.25.25 0 01-.25.25zm0 5H3.25a.25.25 0 01-.25-.25v-1.5a.25.25 0 01.25-.25h17.5a.25.25 0 01.25.25v1.5a.25.25 0 01-.25.25zm0 5H3.25a.25.25 0 01-.25-.25v-1.5a.25.25 0 01.25-.25h17.5a.25.25 0 01.25.25v1.5a.25.25 0 01-.25.25z"
-                />
-              </svg>
-            </button>
+            {!isLoginOrSetPasswordPage && (
+              <>
+
+                {!isLoggedIn && isHomePage&&(
+                  <span className="sign-in" onClick={openModal}>
+                    Sign in
+                  </span>
+                )}
+                <button className="hamburger-menu " onClick={toggleMenu}>
+                  <svg className={`SvgIcon ${isHomePage ? 'SvgIcon-home' : ''}`} viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M20.75 8H3.25A.25.25 0 013 7.75v-1.5A.25.25 0 013.25 6h17.5a.25.25 0 01.25.25v1.5a.25.25 0 01-.25.25zm0 5H3.25a.25.25 0 01-.25-.25v-1.5a.25.25 0 01.25-.25h17.5a.25.25 0 01.25.25v1.5a.25.25 0 01-.25.25zm0 5H3.25a.25.25 0 01-.25-.25v-1.5a.25.25 0 01.25-.25h17.5a.25.25 0 01.25.25v1.5a.25.25 0 01-.25.25z"
+                    />
+                  </svg>
+                </button>
+                <Sidebar isOpen={isMenuOpen} toggleMenu={toggleMenu} logo={logo} />
+              </>
+            )}
           </div>
-          <Sidebar isOpen={isMenuOpen} toggleMenu={toggleMenu} logo={logo} />
         </>
-      )}
+      )
+      }
       <Modal isOpen={isModalOpen} onClose={closeModal} />
-    </header>
+    </header >
   );
 };
 

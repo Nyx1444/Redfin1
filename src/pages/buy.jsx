@@ -1,5 +1,4 @@
 import React from 'react';
-import './styles/buy.css';
 import Navbar from '../components/Navbar/Navbar';
 import houseNearMeImage from '../img/housenearme.png';
 import PropertyCard from '../helpers/Cards/PropertyCard';
@@ -7,8 +6,7 @@ import propertyData from '../data/properties';
 import Slider from "react-slick";
 import Footer from '../components/Footer/Footer';
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+
 
 const Buy = () => {
   const settings = {

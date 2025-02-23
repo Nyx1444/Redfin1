@@ -1,9 +1,10 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useGlobalEvent } from '../../context/GlobalEventContext';
 
 const NavbarUser = () => {
   const location = useLocation(); // ใช้สำหรับดึง URL ปัจจุบัน
-
+  const { windowSize } = useGlobalEvent();
   const pages = [
     { id: "favorites", label: "Favorites", path: "/favorites" },
     { id: "saved-searches", label: "Saved Searches", path: "/saved-searches" },
@@ -18,6 +19,8 @@ const NavbarUser = () => {
   ];
 
   return (
+    <>
+    {windowSize.width >= 980 && (
     <div style={styles.container}>
       {pages.map((page) => (
         <Link
@@ -32,7 +35,8 @@ const NavbarUser = () => {
           {location.pathname === page.path && <div style={styles.activeIndicator}></div>}
         </Link>
       ))}
-    </div>
+    </div>)}
+    </>
   );
 };
 

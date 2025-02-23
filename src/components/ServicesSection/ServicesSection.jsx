@@ -16,7 +16,7 @@ const ServicesSection = () => {
           Redfin agents are among the most experienced in the industry and can
           help you win in today’s market.
         </p>
-        <Link to="/Agent">
+        <Link to="/">
           <button className="service-button">Find an agent</button>
         </Link>
       </div>

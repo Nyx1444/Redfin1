@@ -16,7 +16,7 @@ const AppSection = () => {
                     </p>
                 </div>
                 <div className="qr-content">
-                    <img src="https://ssl.cdn-redfin.com/v554.4.0/images/homepage/banners/download.jpg" alt="QR code to download the app" className="qr-code" />
+                    <img src="https://ssl.cdn-redfin.com/v561.1.0/images/homepage/banners/download.jpg" alt="QR code to download the app" className="qr-code" />
                 </div>
             </div>
 
